@@ -1,0 +1,46 @@
+Sistema operativo utilizado
+Linux debian11mate 5.10.0-8-amd64 #1 SMP Debian 5.10.46-4 (2021-08-03) x86_64 GNU/Linux
+==== make groups.run ====
+/opt/riscv/bin/riscv64-unknown-elf-gcc -g -c -Wall -pedantic -std=c2x -march=rv32im -mabi=ilp32 groups.c -o groups.o
+/opt/riscv/bin/riscv64-unknown-elf-gcc -g -c -Wall -pedantic -std=c2x -march=rv32im -mabi=ilp32 test-groups.c -o test-groups.o
+/opt/riscv/bin/riscv64-unknown-elf-gcc -Wall -pedantic -std=c2x -march=rv32im -mabi=ilp32 -g groups.o test-groups.o  -o groups
+qemu-riscv32 groups
+Felicitaciones: funciona correctamente
+==== make sort-rv-groups.run ====
+/opt/riscv/bin/riscv64-unknown-elf-gcc -c -Wall -pedantic -std=c2x -march=rv32im -mabi=ilp32 sort-rv-groups.s -o sort-rv-groups.o
+/opt/riscv/bin/riscv64-unknown-elf-gcc -g -c -Wall -pedantic -std=c2x -march=rv32im -mabi=ilp32 test-sort.c -o test-sort.o
+/opt/riscv/bin/riscv64-unknown-elf-gcc -Wall -pedantic -std=c2x -march=rv32im -mabi=ilp32 -g sort-rv-groups.o test-sort.o  -o sort-rv-groups
+qemu-riscv32 sort-rv-groups
+Multiples tests con arreglos de solo 2 numeros
+Aprobado
+Ahora un arreglo de 12 numeros
+El arreglo desordenado es:
+--------------------------
+0b1
+0b0
+0b1111
+0b11111110000
+0b101
+0b11100001111
+0b10101010101010101010101010101010
+0b110011000100111110011
+0b111111110001110001
+0b11111111101111111110111111011111
+0b1010101010101010101
+0b10111111111000100100101
+
+El arreglo ordenado es:
+-----------------------
+0b0
+0b1
+0b1111
+0b11111110000
+0b101
+0b11100001111
+0b111111110001110001
+0b11111111101111111110111111011111
+0b110011000100111110011
+0b10111111111000100100101
+0b1010101010101010101
+0b10101010101010101010101010101010
+Felicitaciones: todos los tests aprobados
